@@ -1,0 +1,37 @@
+<idea-plugin>
+    <id>dev.gitcommitforai.idea</id>
+    <name>git commit for ai</name>
+    <version>1.0.0</version>
+    <vendor>git commit for ai</vendor>
+    <idea-version since-build="243"/>
+    <description><![CDATA[
+      <p>从选中的 Git 变更生成提交信息。支持长期保存多个自定义模型配置、可编辑 Prompt 模板和流式输出。</p>
+      <p>支持 OpenAI-compatible Chat Completions 与 Ollama。API Key 由 IDE PasswordSafe 管理。</p>
+    ]]></description>
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.vcs</depends>
+    <depends>Git4Idea</depends>
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="dev.gitcommitforai.settings.PluginSettings"/>
+        <applicationConfigurable id="dev.gitcommitforai.settings"
+            instance="dev.gitcommitforai.ui.AiCommitConfigurable"
+            displayName="git commit for ai" groupId="tools"/>
+        <notificationGroup id="Git Commit for AI" displayType="BALLOON"/>
+    </extensions>
+    <actions>
+        <action id="GitCommitForAi.Generate" class="dev.gitcommitforai.actions.GenerateCommitAction"
+            text="AI 生成提交信息" description="根据提交窗口勾选的变更生成提交信息" icon="/icons/commit-ai.svg">
+            <add-to-group group-id="Vcs.MessageActionGroup" anchor="first"/>
+        </action>
+        <action id="GitCommitForAi.Switch" class="dev.gitcommitforai.actions.SwitchProfileAction"
+            text="切换 AI 模型与模板" description="选择默认模型、Prompt 模板及输出语言" icon="AllIcons.General.GearPlain">
+            <add-to-group group-id="Vcs.MessageActionGroup" anchor="last"/>
+        </action>
+        <group id="GitCommitForAi.Tools" text="git commit for ai" popup="true" icon="/icons/commit-ai.svg">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+            <action id="GitCommitForAi.Settings" class="dev.gitcommitforai.actions.OpenSettingsAction" text="模型与 Prompt 设置"/>
+            <action id="GitCommitForAi.LastPrompt" class="dev.gitcommitforai.actions.LastPromptAction" text="查看上次发送的 Prompt"/>
+        </group>
+    </actions>
+</idea-plugin>
+

@@ -1,0 +1,25 @@
+PASS strict prompt budget and nonrecursive placeholders
+PASS unicode truncation
+PASS path exclusion at root and nested folders
+PASS incremental SSE multiline framing and EOF
+PASS reasoning tags split at every boundary
+PASS XML configuration survives round-trip and rename
+PASS legacy and null settings normalized safely
+PASS blank key preserves saved credentials and explicit clear removes them
+PASS OpenAI streaming UTF-8 and missing DONE
+PASS OpenAI auth and exact request body
+PASS non-stream JSON response
+PASS JSON response to a streaming request
+PASS Ollama NDJSON response and EOF
+PASS HTTP error does not expose the API key
+PASS streaming service errors redact the API key
+PASS custom JSON parameters and reserved fields
+PASS cancellation while body is idle
+PASS endpoint normalization and query preservation
+PASS api-key header authentication
+RESULT: 19 tests passed.
+PASS persistence process 1: model profiles and templates written to XML
+PASS persistence process 2: profiles, templates, defaults and Unicode restored
+UI preview saved: build/
+BUILT build/distributions/git-commit-for-ai-1.0.0.zip
+
